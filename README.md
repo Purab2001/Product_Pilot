@@ -1,38 +1,59 @@
-# Task Overview
+# 🚀 ProductPilot &nbsp;![Next.js](https://img.shields.io/badge/Next.js-000?style=flat&logo=nextdotjs) ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=flat&logo=mongodb) ![DaisyUI](https://img.shields.io/badge/DaisyUI-5A29E4?style=flat&logo=tailwindcss) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-Build a simple application using Next.js (App Router). The app will have public and protected pages with basic authentication using NextAuth.js. Users can view a landing page, visit product details, and after logging in, access a protected product management page to add new products.
+> 🛒 **A modern, full-stack product management app with authentication, beautiful UI, and seamless UX.**
 
-# Core Features to Build
+---
 
-1. Landing Page (/)
+## ✨ Features
 
-* Must include 4 sections: Navbar, Hero, Product Highlights, Footer
-* Navigation to login and products
-* No authentication required
+- ⚡️ **Next.js App Router & API routes**
+- 🔐 **NextAuth.js authentication (Google & credentials)**
+- 🍃 **MongoDB/Mongoose product storage**
+- 🎨 **DaisyUI + Tailwind CSS for modern UI**
+- 🔔 **Toast notifications (react-hot-toast)**
+- ⏳ **Loading spinners for async actions**
+- 📱 **Responsive & accessible design**
 
-2. Login with NextAuth (/login)
+---
 
-* Implement social login (e.g.,Google) or credential login using NextAuth
-* Redirect to /products after successful login
+## 🛠️ Setup & Installation
 
-3. Product List Page (/products)
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/Product_Pilot.git
+   cd Product_Pilot
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Configure environment variables:**
+   - Copy `.env.example` to `.env.local` and fill in your MongoDB URI and NextAuth secrets/providers.
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+5. **Open your browser:**
+   - Visit [http://localhost:3000](http://localhost:3000)
 
-* Publicly accessible
-* Fetch and show a list of products from a mock backend or file
-* Each product will include: name, description, price, and a details button
+---
 
-4. Product Details Page (/products/[id])
+## 🗺️ Route Summary
 
-* Show full details of a single product
-* Publicly accessible
+| 🔗 Route                 | 🔒 Access    | 📄 Description                                                 |
+| ------------------------ | ------------ | -------------------------------------------------------------- |
+| `/`                      | 🌐 Public    | Landing page with Navbar, Hero, Product Highlights, and Footer |
+| `/login`                 | 🌐 Public    | Login page (Google & credentials, redirects to `/products`)    |
+| `/signup`                | 🌐 Public    | Register a new account                                         |
+| `/products`              | 🌐 Public    | Product list with search, filter, and details button           |
+| `/products/[id]`         | 🌐 Public    | Product details page with full info and image gallery          |
+| `/dashboard/add-product` | 🔑 Protected | Add product form (requires login, stores to database)          |
 
-5. Protected Page: Add Product (/dashboard/add-product)
+---
 
-* Only accessible when logged in
-* A form to add a new product and store the product data in database
-* Redirect unauthenticated users to login
+## 💡 Why ProductPilot?
 
-
-# Optional Enhancements
-* Show a loading spinner when submitting forms
-* Display toast message on successful product add
+- 🧑‍💻 **Developer-friendly**: Clean code, modular structure, easy to extend
+- 🖥️ **Modern UI**: DaisyUI + Tailwind for a beautiful, accessible experience
+- 🔄 **Full CRUD**: Add, view, and manage products with ease
+- 🌍 **Open Source**: MIT licensed, ready for your next project

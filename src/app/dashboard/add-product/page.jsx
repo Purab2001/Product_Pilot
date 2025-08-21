@@ -5,11 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import {
-  Package,
-  ArrowLeft,
   Plus,
-  DollarSign,
-  FileText,
   Image as ImageIcon,
 } from "lucide-react";
 
@@ -116,7 +112,7 @@ export default function AddProductPage() {
   };
 
   return (
-    <section className="bg-base-100">
+    <section className="bg-base-200">
       <div className="py-8 px-4 mx-auto max-w-7xl lg:py-16">
         {/* Header */}
         <h2 className="mb-4 text-xl font-bold text-base-content">
