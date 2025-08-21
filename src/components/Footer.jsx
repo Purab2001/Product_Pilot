@@ -11,11 +11,11 @@ export default function Footer() {
         <Link href="/products" className="link link-hover">
           Products
         </Link>
-        <Link href="/login" className="link link-hover">
-          Login
+        <Link href="/about" className="link link-hover">
+          About Us
         </Link>
-        <Link href="/dashboard/add-product" className="link link-hover">
-          Add Product
+        <Link href="/contact" className="link link-hover">
+          Contact
         </Link>
       </nav>
       <nav>
@@ -72,8 +72,7 @@ export default function Footer() {
       </nav>
       <aside>
         <p>
-          Copyright © {new Date().getFullYear()} - All rights reserved by
-          ProductPilot
+          &copy; {new Date().getFullYear()} ProductPilot. All rights reserved.
         </p>
       </aside>
     </footer>

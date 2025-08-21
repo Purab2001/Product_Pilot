@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { Mail, Lock, LogIn, UserPlus } from "lucide-react";
 
 export default function SignupPage() {
@@ -17,6 +18,9 @@ export default function SignupPage() {
     const email = formData.get("email");
     const password = formData.get("password");
 
+    // Show loading toast
+    const loadingToast = toast.loading("Creating account...");
+
     try {
       // Create account logic here (API call to register endpoint)
       const response = await fetch("/api/auth/register", {
@@ -26,15 +30,24 @@ export default function SignupPage() {
       });
 
       if (response.ok) {
+        toast.dismiss(loadingToast);
+        toast.success("Account created successfully!");
+
         // Auto sign in after successful registration
         await signIn("credentials", {
           email,
           password,
           callbackUrl: "/products",
         });
+      } else {
+        const error = await response.json();
+        toast.dismiss(loadingToast);
+        toast.error(error.error || "Failed to create account");
       }
     } catch (error) {
       console.error("Registration error:", error);
+      toast.dismiss(loadingToast);
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }

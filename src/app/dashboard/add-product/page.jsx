@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import {
   Package,
   ArrowLeft,
@@ -60,6 +61,9 @@ export default function AddProductPage() {
     e.preventDefault();
     setIsLoading(true);
 
+    // Show loading toast
+    const loadingToast = toast.loading("Adding product...");
+
     try {
       const response = await fetch("/api/products", {
         method: "POST",
@@ -78,6 +82,10 @@ export default function AddProductPage() {
       });
 
       if (response.ok) {
+        // Dismiss loading toast and show success
+        toast.dismiss(loadingToast);
+        toast.success("Product added successfully!");
+
         // Reset form
         setFormData({
           name: "",
@@ -89,18 +97,19 @@ export default function AddProductPage() {
           image: "",
         });
 
-        // Show success message (you can implement toast here)
-        alert("Product added successfully!");
-
-        // Redirect to products page
-        router.push("/products");
+        // Redirect to products page after a short delay
+        setTimeout(() => {
+          router.push("/products");
+        }, 1500);
       } else {
         const error = await response.json();
-        alert(`Failed to add product: ${error.error}`);
+        toast.dismiss(loadingToast);
+        toast.error(`Failed to add product: ${error.error}`);
       }
     } catch (error) {
       console.error("Error adding product:", error);
-      alert("Failed to add product. Please try again.");
+      toast.dismiss(loadingToast);
+      toast.error("Failed to add product. Please try again.");
     } finally {
       setIsLoading(false);
     }

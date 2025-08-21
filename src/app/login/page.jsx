@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { Mail, Lock, LogIn } from "lucide-react";
 
 export default function LoginPage() {
@@ -17,6 +18,9 @@ export default function LoginPage() {
     const email = formData.get("email");
     const password = formData.get("password");
 
+    // Show loading toast
+    const loadingToast = toast.loading("Signing in...");
+
     try {
       const result = await signIn("credentials", {
         email,
@@ -26,13 +30,17 @@ export default function LoginPage() {
       });
 
       if (result?.ok) {
+        toast.dismiss(loadingToast);
+        toast.success("Login successful!");
         router.push("/products");
       } else {
-        // Optionally show an error message here
-        console.error("Login failed");
+        toast.dismiss(loadingToast);
+        toast.error("Invalid email or password");
       }
     } catch (error) {
       console.error("Login error:", error);
+      toast.dismiss(loadingToast);
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }
